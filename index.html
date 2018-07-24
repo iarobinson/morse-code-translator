@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>A tool for deciphering morse code immediatly</title>
+  <!-- <script src="morseCode.js"></script> -->
+  <style>
+    body { 
+      font-family: sans-serif;
+      margin: 20px 20px 20px 20px;
+      width: 100%;
+    }
+    p {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Translate Morse Code</h1>
+  <p>Enter your morse code in the section below:</p>
+  <input value='' id='englishInput' type="text" onkeyup="renderTranslation()"></input>
+  <p id='englishOutput'>Your output will appear here.</p>
+  <script>
+    window.onload = init; 
+    var textInput, inputValue, results;
+
+    function init() {
+      "use strict";
+    }
+
+    function renderTranslation() {
+      textInput = document.getElementById('englishInput');
+      inputValue = textInput.value;
+      results = document.getElementById("englishOutput");
+      results.innerHTML = decodeMorse(inputValue);
+    }
+
+    function decodeMorse(str) {
+      var decodedString = '';
+
+      var letters = str.split(' ');
+      letters.forEach(function(ele) {
+        console.log(ele, "<- ele");
+        if (morseCode[ele] == 'undefined') {
+          decodedString += "_";
+        } else {
+          decodedString += morseCode[ele]; 
+        }
+      });
+      
+      return decodedString;
+    }
+
+    var morseCode = {
+      '.-': 'a',
+      '-...': 'b',
+      '-.-.': 'c',
+      '-..': 'd',
+      '.': 'e',
+      '..-.': 'f',
+      '--.': 'g',
+      '....': 'h',
+      '..': 'i',
+      '.---': 'j',
+      '-.-': 'k',
+      '.-..': 'l',
+      '--': 'm',
+      '-.': 'n',
+      '---': 'o',
+      '.--.': 'p',
+      '--.-': 'q',
+      '.-.': 'r',
+      '...': 's',
+      '-': 't',
+      '..-': 'u',
+      '...-': 'v',
+      '.--': 'w',
+      '-..-': 'x',
+      '-.--': 'y',
+      '--..': 'z',
+      '.......' : ' ',
+    }
+  </script>
+</body>
+</html>
